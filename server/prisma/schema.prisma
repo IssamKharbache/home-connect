@@ -13,7 +13,7 @@ model User {
     email           String     @unique
     image           String?
     bookedVisits    Json[]
-    favPropertiesId String[]   @db.ObjectId
+    favPropertiesID String[]   @db.ObjectId
     ownedProperties Property[] @relation("Owner")
 }
 
@@ -31,4 +31,6 @@ model Property {
     owner       User     @relation("Owner", fields: [userEmail], references: [email], onDelete: Cascade)
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt
+
+    @@unique(fields: [address, userEmail])
 }
