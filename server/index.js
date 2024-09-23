@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import { userRoute } from "./routes/userRoute.js";
+import { propertyRoute } from "./routes/propertyRoute.js";
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
@@ -19,3 +20,4 @@ app.listen(PORT, () => {
 });
 
 app.use("/api/user", userRoute);
+app.use("/api/property", propertyRoute);
