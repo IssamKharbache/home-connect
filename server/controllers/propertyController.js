@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import { prisma } from "../config/prismaConfig.js";
 
+//create a property function
 export const createProperty = asyncHandler(async (req, res) => {
   const {
     title,
@@ -39,6 +40,7 @@ export const createProperty = asyncHandler(async (req, res) => {
   }
 });
 
+//get all properties function
 export const getAllProperties = asyncHandler(async (req, res) => {
   try {
     const properties = await prisma.property.findMany({
@@ -52,5 +54,21 @@ export const getAllProperties = asyncHandler(async (req, res) => {
     res
       .status(500)
       .send({ message: "Internal server error, while fetching properties" });
+  }
+});
+
+//get specific property function
+export const getProperty = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const property = await prisma.property.findUnique({
+      where: {
+        id,
+      },
+    });
+    res.send(property);
+  } catch (error) {
+    throw new Error(error.message);
   }
 });
