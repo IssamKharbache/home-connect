@@ -1,13 +1,15 @@
 .h-wrapper {
-    background-color: var(--black);
     color: white;
+    z-index: 99;
+    position: sticky;
+    top: 0;
 }
 
 .h-container{
-    justify-content: space-between;
     padding-top: 1rem;
     padding-bottom: 1rem;
     color: var(--secondary);
+    justify-content: space-between;
 }
 
 .h-menu{
