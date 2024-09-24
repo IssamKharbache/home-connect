@@ -103,3 +103,55 @@ export const cancelBooking = asyncHandler(async (req, res) => {
     throw new Error(error.message);
   }
 });
+
+//make a favorite property function
+export const makeFavorite = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  const { PropertyId } = req.params;
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+    if (user.favPropertiesID.includes(PropertyId)) {
+      //remove the property from the favorites array
+      const updatedUser = await prisma.user.update({
+        where: { email },
+        data: {
+          favPropertiesID: {
+            set: user.favPropertiesID.filter((id) => id !== PropertyId),
+          },
+        },
+      });
+      res.send({ message: "Removed from favorites", user: updatedUser });
+    } else {
+      // add the property to the favorites array
+      const updatedUser = await prisma.user.update({
+        where: { email },
+        data: {
+          favPropertiesID: {
+            push: PropertyId,
+          },
+        },
+      });
+      res.send({ message: "Added to favorites", user: updatedUser });
+    }
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
+
+//get all favorite properties function
+export const getFavoritesProperties = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  try {
+    const favoritesProperties = await prisma.user.findUnique({
+      where: { email },
+      select: { favPropertiesID: true },
+    });
+    res.status(200).send(favoritesProperties);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
