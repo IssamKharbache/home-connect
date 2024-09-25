@@ -1,10 +1,9 @@
-import React from "react";
 import "./hero.css";
-import { HiLocationMarker } from "react-icons/hi";
+import SearchBar from "./SearchBar";
 const Hero = () => {
   return (
     <section className="hero-wrapper">
-      <div className="paddings innerWidth flexCenter   hero-container ">
+      <div className="paddings innerWidth flexCenter hero-container">
         {/* LEFT SIDE */}
         <div className="flexColStart hero-left">
           <div className="hero-title">
@@ -25,11 +24,7 @@ const Hero = () => {
             </span>
           </div>
           {/* SEARCH AREA */}
-          <div className="flexCenter search-bar">
-            <HiLocationMarker color="var(--blue)" size={25} />
-            <input type="text" placeholder="Search for properties..." />
-            <button className="button">Search</button>
-          </div>
+          <SearchBar />
         </div>
         {/* RIGHT SIDE */}
         <div className="flexCenter hero-right">
