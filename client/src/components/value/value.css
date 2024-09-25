@@ -47,3 +47,18 @@
     font-size: 1.2rem;
 }
 
+
+
+@media (max-width: 1024px) {
+    .v-container {
+        flex-direction: column;
+    }
+    @media (max-width:769px) {
+        .accordion-button .primaryText{
+            font-size: 0.8rem;
+        }
+        .accordion-item .secondaryText{
+            font-size: 0.7rem;
+        }
+    }
+}
