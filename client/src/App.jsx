@@ -1,28 +1,29 @@
-import Header from "./components/header/Header";
-import Hero from "./components/hero/Hero";
+import Website from "./pages/Website";
 import "./App.css";
-import Companies from "./components/companies/Companies";
-import Properties from "./components/properties/Properties";
-import Value from "./components/value/Value";
-import Contact from "./components/contact/Contact";
-import GetStarted from "./components/getStarted/GetStarted";
-import Footer from "./components/footer/Footer";
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Suspense } from "react";
+import Layout from "./components/Layout";
+import PropertiesPage from "./pages/properties/Properties";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { Toaster } from "sonner";
 function App() {
+  const queryClient = new QueryClient();
   return (
-    <div className="App">
-      <div className="">
-        <div className="white-gradient" />
-        <Header />
-        <Hero />
-      </div>
-      <Companies />
-      <Properties />
-      <Value />
-      <Contact />
-      <GetStarted />
-      <Footer />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <Toaster richColors position="top-center" />
+      <BrowserRouter>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Website />} />
+              <Route path="/properties" element={<PropertiesPage />} />
+            </Route>
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 

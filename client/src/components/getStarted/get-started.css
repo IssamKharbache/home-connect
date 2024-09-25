@@ -1,3 +1,6 @@
+.g-wrapper{
+    padding-bottom: 15px;
+}
 .inner-container{
     gap: 1.5rem;
     background: #4161df;

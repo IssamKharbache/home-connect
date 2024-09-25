@@ -40,12 +40,8 @@
 
 
 .search-bar {
-    border-radius: 5px;
-   gap: 1rem;
-
-    padding: 0.5rem 1rem;
-    width: 100%;
-    padding: 5px;
+    gap: 2rem;
+  
 }
 .search-bar>input{
     border: 3px solid rgb(189, 190, 189);
