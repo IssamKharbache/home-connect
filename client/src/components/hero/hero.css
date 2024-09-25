@@ -7,7 +7,7 @@
 }
 
 .hero-container{
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: flex-end;
 }
 
@@ -19,7 +19,7 @@
 
 .hero-title{
     position: relative;
-    z-index: 999;
+    z-index: 1;
 }
 
 .hero-title>h1{
@@ -93,4 +93,5 @@ object-fit: cover;
     .hero-right {
         width: 100%;
     }
+    
 }

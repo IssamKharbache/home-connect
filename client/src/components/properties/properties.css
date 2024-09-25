@@ -67,3 +67,13 @@
     background-color: #EEEEFF;
    
 }
+
+
+@media (max-width: 640px) {
+    .p-head{
+        align-items: center;
+    }
+    .p-button{
+        position: initial;
+    }
+}
