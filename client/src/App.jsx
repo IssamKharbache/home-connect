@@ -6,6 +6,7 @@ import Properties from "./components/properties/Properties";
 import Value from "./components/value/Value";
 import Contact from "./components/contact/Contact";
 import GetStarted from "./components/getStarted/GetStarted";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Value />
       <Contact />
       <GetStarted />
+      <Footer />
     </div>
   );
 }
