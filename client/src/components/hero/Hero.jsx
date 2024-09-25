@@ -1,5 +1,6 @@
 import "./hero.css";
 import SearchBar from "./SearchBar";
+import { motion } from "framer-motion";
 const Hero = () => {
   return (
     <section className="hero-wrapper">
@@ -8,9 +9,13 @@ const Hero = () => {
         <div className="flexColStart hero-left">
           <div className="hero-title">
             <div className="orange-circle" />
-            <h1>
+            <motion.h1
+              initial={{ opacity: 0, y: "2rem" }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 2, type: "spring" }}
+            >
               Discover Most <br /> Beautiful and Suitable <br /> Properties
-            </h1>
+            </motion.h1>
           </div>
           {/* description */}
           <div className="flexColStart secondaryText hero-descr">
@@ -28,9 +33,14 @@ const Hero = () => {
         </div>
         {/* RIGHT SIDE */}
         <div className="flexCenter hero-right">
-          <div className="image-container">
+          <motion.div
+            initial={{ x: "7rem", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 2, type: "spring" }}
+            className="image-container"
+          >
             <img src="./hero-image.png" alt="hero image" />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

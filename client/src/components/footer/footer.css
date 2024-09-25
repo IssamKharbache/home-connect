@@ -1,5 +1,8 @@
 .f-container{
     justify-content: space-between;
+    background-color: var(--black);
+    border-radius: 15px 15px 0 0 ;
+    width: auto;
 
 }
 
@@ -10,6 +13,7 @@
     gap: 1.5rem;
     margin-top: 1.5rem;
     font-weight: 500;
+    color: white;
 }
 
 @media (max-width: 668px) {
