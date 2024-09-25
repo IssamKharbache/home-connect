@@ -19,9 +19,9 @@ function App() {
       <Companies />
       <Properties />
       <Value />
-      {/* <Contact /> */}
-      {/* <GetStarted /> */}
-      {/* <Footer />  */}
+      <Contact />
+      <GetStarted />
+      <Footer />
     </div>
   );
 }
