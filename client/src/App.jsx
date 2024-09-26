@@ -7,6 +7,7 @@ import PropertiesPage from "./pages/properties/Properties";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { Toaster } from "sonner";
+import SingleProperty from "./pages/single-property/SingleProperty";
 function App() {
   const queryClient = new QueryClient();
   return (
@@ -17,7 +18,10 @@ function App() {
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<Website />} />
-              <Route path="/properties" element={<PropertiesPage />} />
+              <Route path="/properties">
+                <Route index element={<PropertiesPage />} />
+                <Route path=":propertyId" element={<SingleProperty />} />
+              </Route>
             </Route>
           </Routes>
         </Suspense>

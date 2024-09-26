@@ -1,10 +1,15 @@
 import "./property-card.css";
 import { AiFillHeart } from "react-icons/ai";
 import { truncate } from "lodash";
+import { useNavigate } from "react-router-dom";
 
 const PropertyCard = ({ property }) => {
+  const navigate = useNavigate();
   return (
-    <div className="flexColStart p-card">
+    <div
+      className="flexColStart p-card"
+      onClick={() => navigate(`/properties/${property.id}`)}
+    >
       <AiFillHeart size={24} color="white" />
       <img src={property.image} alt={property.name} />
 

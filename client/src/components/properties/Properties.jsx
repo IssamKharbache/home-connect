@@ -5,6 +5,7 @@ import { sliderSettings } from "../../utils/common";
 import PropertyCard from "../propertyCard/PropertyCard";
 import useProperties from "../../hooks/useProperties";
 import { HashLoader } from "react-spinners";
+import Loading from "../loading/Loading";
 
 const Properties = () => {
   const { data, isError, isLoading } = useProperties();
@@ -16,17 +17,7 @@ const Properties = () => {
     );
   }
   if (isLoading) {
-    return (
-      <div className="wrapper flexCenter" style={{ height: "60vh" }}>
-        <HashLoader
-          height="80"
-          width="80"
-          radius={1}
-          aria-label="ring-loading"
-          color="#4066ff"
-        />
-      </div>
-    );
+    return <Loading />;
   }
   return (
     <section className="p-wrapper">

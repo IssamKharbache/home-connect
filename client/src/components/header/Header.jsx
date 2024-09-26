@@ -16,7 +16,7 @@ const Header = () => {
     <section className="h-wrapper">
       <div className="flexCenter paddings innerWidth h-container">
         <Link to="/">
-          <img src="./logo1.png" alt="Logo" width={100} />
+          <img src="../logo1.png" alt="Logo" width={100} />
         </Link>
         <OutsideClickHandler onOutsideClick={() => setIsMenuOpen(false)}>
           <div style={getMenuStyles(isMenuOpen)} className="flexCenter h-menu">
