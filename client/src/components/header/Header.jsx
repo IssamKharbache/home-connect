@@ -3,8 +3,11 @@ import "./header.css";
 import { CgMenuRightAlt } from "react-icons/cg";
 import OutsideClickHandler from "react-outside-click-handler";
 import { Link, NavLink } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import ProfileMenu from "../profilemenu/ProfileMenu";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
 
   //function to get the menu styles
   const getMenuStyles = (isMenuOpen) => {
@@ -24,7 +27,13 @@ const Header = () => {
 
             <a href="mailto:issamkharbache2@gmail.com">Contact us</a>
             {/* Login byutton */}
-            <button className="button">Login</button>
+            {!isAuthenticated ? (
+              <button onClick={loginWithRedirect} className="button">
+                Login
+              </button>
+            ) : (
+              <ProfileMenu user={user} logout={logout} />
+            )}
           </div>
         </OutsideClickHandler>
 

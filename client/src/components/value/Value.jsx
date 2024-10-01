@@ -37,7 +37,8 @@ const Value = () => {
             preExpanded={[0]}
           >
             {dataAccordion.map((value, idx) => {
-              const [className, setClassName] = useState(null);
+              const [className, setClassName] = useState("");
+
               return (
                 <AccordionItem
                   className={`accordion-item ${className}`}
