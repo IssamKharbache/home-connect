@@ -10,7 +10,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Auth0Provider
       domain={import.meta.env.VITE_AUTH0_DOMAIN}
       clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
-      authorizationParams={{ redirect_uri: "http://localhost:5173/" }}
+      authorizationParams={{ redirect_uri: "http://localhost:5173" }}
       audience="http://localhost:8000"
       scope="openid profile email"
     >

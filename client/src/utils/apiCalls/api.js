@@ -39,9 +39,17 @@ export const getSpecificProperty = async (id) => {
 };
 
 //create user function
-export const createUser = async (email) => {
+export const createUser = async (email, token) => {
   try {
-    await api.post("/user/register", { email });
+    await api.post(
+      "/user/register",
+      { email },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
   } catch (error) {
     toast.error("Something went wrong, Please try again !");
     throw error;
