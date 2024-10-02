@@ -55,3 +55,17 @@ export const createUser = async (email, token) => {
     throw error;
   }
 };
+
+//book visit function
+
+export const bookVisit = async (date, propertyId, email, token) => {
+  try {
+    await api.post(
+      `/user/book-visit/${propertyId}`,
+      { email, id: propertyId, date: dayjs(date).format("DD/MM/YYYY") },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+  } catch (error) {
+    throw error;
+  }
+};

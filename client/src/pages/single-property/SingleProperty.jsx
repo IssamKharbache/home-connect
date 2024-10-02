@@ -10,6 +10,10 @@ import { GiHomeGarage } from "react-icons/gi";
 import { FaBed } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
 import Map from "../../components/map/Map";
+import { useState } from "react";
+import useAuthCheck from "../../hooks/useAuthCheck";
+import BookingModal from "../../components/modals/BookingModal";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const SingleProperty = () => {
   const { pathname } = useLocation();
@@ -17,7 +21,9 @@ const SingleProperty = () => {
   const { data, isLoading, isError } = useQuery(["singleProperty", id], () =>
     getSpecificProperty(id)
   );
-
+  const { user } = useAuth0();
+  const [modalOpen, setModalOpen] = useState(false);
+  const { validateLogin } = useAuthCheck();
   if (isLoading) {
     return <Loading />;
   }
@@ -98,7 +104,21 @@ const SingleProperty = () => {
               </span>
             </div>
             {/* booking button */}
-            <button className="button">Book a visit</button>
+            <button
+              onClick={() => {
+                validateLogin() && setModalOpen(true);
+              }}
+              className="button"
+            >
+              Book a visit
+            </button>
+            {/* MODAL */}
+            <BookingModal
+              opened={modalOpen}
+              setOpened={setModalOpen}
+              propertyId={id}
+              email={user?.email}
+            />
           </div>
           {/* right */}
           <div className="map">

@@ -37,19 +37,19 @@ export const bookVisit = asyncHandler(async (req, res) => {
         bookedVisits: true,
       },
     });
-    if (alreadyBooked.bookedVisits.some((visit) => visit.id === id)) {
-      res
-        .status(400)
-        .json({ message: "The property is already booked by you" });
-    } else {
+    if (!alreadyBooked.bookedVisits.some((visit) => visit.id === id)) {
       await prisma.user.update({
         where: { email: email },
         data: {
           bookedVisits: { push: { id, date } },
         },
       });
+      res.send("Your visit is booked successfully");
+    } else {
+      res
+        .status(400)
+        .json({ message: "You already booked a visit for this property" });
     }
-    res.send("Your visit is booked successfully");
   } catch (error) {
     throw new Error(error.message);
   }
