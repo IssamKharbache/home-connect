@@ -1,7 +1,7 @@
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import "./single-property.css";
 import { useLocation } from "react-router-dom";
-import { getSpecificProperty } from "../../utils/apiCalls/api";
+import { cancelBooking, getSpecificProperty } from "../../utils/apiCalls/api";
 import Loading from "../../components/loading/Loading";
 //icons
 import { AiFillHeart } from "react-icons/ai";
@@ -10,20 +10,49 @@ import { GiHomeGarage } from "react-icons/gi";
 import { FaBed } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
 import Map from "../../components/map/Map";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import useAuthCheck from "../../hooks/useAuthCheck";
 import BookingModal from "../../components/modals/BookingModal";
 import { useAuth0 } from "@auth0/auth0-react";
+import UserDetailContext from "../../context/UserDetailContext";
+import { Button } from "@mantine/core";
+import { toast } from "sonner";
+import Heart from "../../components/properties/Heart";
 
 const SingleProperty = () => {
+  //getting the property id from the pathname
   const { pathname } = useLocation();
   const id = pathname.split("/").slice(-1)[0];
+  //use query to get a single property
   const { data, isLoading, isError } = useQuery(["singleProperty", id], () =>
     getSpecificProperty(id)
   );
+  //getting the user details
   const { user } = useAuth0();
+  //modal state
   const [modalOpen, setModalOpen] = useState(false);
+  //auth check hook
   const { validateLogin } = useAuthCheck();
+  //get the context user details
+  const {
+    userDetails: { token, bookings },
+    setUserDetails,
+  } = useContext(UserDetailContext);
+
+  //cancel booking mutation
+
+  const { mutate: removeBooking, isLoading: cancelling } = useMutation({
+    mutationFn: () => cancelBooking(id, user?.email, token),
+    onSuccess: () => {
+      setUserDetails((prev) => ({
+        ...prev,
+        bookings: prev.bookings.filter((booking) => booking.id !== id),
+      }));
+      toast.success("Your visit is cancelled successfully");
+    },
+    onError: () => toast.error("Something went wrong, please try again"),
+  });
+
   if (isLoading) {
     return <Loading />;
   }
@@ -40,7 +69,7 @@ const SingleProperty = () => {
       <div className="flexColStart paddings innerWidth property-container">
         {/* like button */}
         <div className="like">
-          <AiFillHeart size={24} color="white" />
+          <Heart id={id} />
         </div>
         {/* image */}
         <img src={data?.image} alt={data?.title} />
@@ -104,14 +133,32 @@ const SingleProperty = () => {
               </span>
             </div>
             {/* booking button */}
-            <button
-              onClick={() => {
-                validateLogin() && setModalOpen(true);
-              }}
-              className="button"
-            >
-              Book a visit
-            </button>
+            {bookings?.map((booking) => booking.id).includes(id) ? (
+              <>
+                <Button
+                  disabled={cancelling}
+                  onClick={() => removeBooking()}
+                  color="red"
+                  w="100%"
+                  variant="outline"
+                >
+                  Cancel booking
+                </Button>
+                <span>
+                  Your visit is booked for date{" "}
+                  {bookings?.filter((booking) => booking?.id === id)[0].date}
+                </span>
+              </>
+            ) : (
+              <button
+                onClick={() => {
+                  validateLogin() && setModalOpen(true);
+                }}
+                className="button"
+              >
+                Book a visit
+              </button>
+            )}
             {/* MODAL */}
             <BookingModal
               opened={modalOpen}

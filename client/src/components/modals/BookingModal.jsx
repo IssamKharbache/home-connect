@@ -5,6 +5,7 @@ import { useMutation } from "react-query";
 import UserDetailContext from "../../context/UserDetailContext.js";
 import { bookVisit } from "../../utils/apiCalls/api.js";
 import { toast } from "sonner";
+import dayjs from "dayjs";
 
 const BookingModal = ({ opened, setOpened, propertyId, email }) => {
   const [value, setValue] = useState(null);

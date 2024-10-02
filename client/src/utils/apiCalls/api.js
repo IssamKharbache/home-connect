@@ -69,3 +69,38 @@ export const bookVisit = async (date, propertyId, email, token) => {
     throw error;
   }
 };
+
+//cancel a booking function
+export const cancelBooking = async (id, email, token) => {
+  try {
+    await api.post(
+      `/user/cancel-booking/${id}`,
+      { email },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
+};
+
+//handle favorite
+
+export const makeFavorite = async (id, email, token) => {
+  try {
+    await api.post(
+      `/user/make-favorite/${id}`,
+      { email },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
+};
