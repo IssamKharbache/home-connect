@@ -104,3 +104,41 @@ export const makeFavorite = async (id, email, token) => {
     throw error;
   }
 };
+
+// get all favourites
+export const getAllFavoutites = async (email, token) => {
+  if (!token) return;
+  try {
+    const res = await api.post(
+      `/user/favorite-properties`,
+      { email },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return res.data["favPropertiesID"];
+  } catch (error) {
+    throw error;
+  }
+};
+
+// get all bookings
+export const getAllBookings = async (email, token) => {
+  if (!token) return;
+  try {
+    const res = await api.post(
+      `/user/booked-visits`,
+      { email },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return res.data["bookedVisits"];
+  } catch (error) {
+    throw error;
+  }
+};

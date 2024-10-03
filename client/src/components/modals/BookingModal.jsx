@@ -37,7 +37,7 @@ const BookingModal = ({ opened, setOpened, propertyId, email }) => {
       title="Select date of your visit"
       centered
     >
-      <div className="flexColCenter">
+      <div className="flexColCenter" style={{ gap: "1rem" }}>
         <DatePicker value={value} onChange={setValue} minDate={new Date()} />
         <Button disabled={!value || isLoading} onClick={() => mutate()}>
           Book a visit
