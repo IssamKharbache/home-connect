@@ -17,7 +17,6 @@ export const getAllProperties = async () => {
     }
     return res.data;
   } catch (error) {
-    toast.error("Something went wrong !");
     throw error;
   }
 };
@@ -33,7 +32,6 @@ export const getSpecificProperty = async (id) => {
     }
     return res.data;
   } catch (error) {
-    toast.error("Something went wrong !");
     throw error;
   }
 };
@@ -138,6 +136,23 @@ export const getAllBookings = async (email, token) => {
       }
     );
     return res.data["bookedVisits"];
+  } catch (error) {
+    throw error;
+  }
+};
+
+// create property function
+export const createProperty = async (data, token) => {
+  try {
+    const res = await api.post(
+      `/property/create`,
+      { data },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
   } catch (error) {
     throw error;
   }

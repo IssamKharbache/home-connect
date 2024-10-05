@@ -93,24 +93,24 @@ const SingleProperty = () => {
               <div className="flexStart facility">
                 <FaShower size={20} color="#1F3E72" />
                 <span>
-                  {data?.facilities?.bathrooms == 1
-                    ? `${data?.facilities?.parking} Bathroom`
-                    : `${data?.facilities?.parking} Bathrooms`}{" "}
+                  {data?.facilities?.bathrooms === 1
+                    ? `${data?.facilities?.bathrooms} Bathroom`
+                    : `${data?.facilities?.bathrooms} Bathrooms`}{" "}
                 </span>
               </div>
               {/* garages */}
               <div className="flexStart facility">
                 <GiHomeGarage size={20} color="#1F3E72" />
                 <span>
-                  {data?.facilities?.parking == 1
-                    ? `${data?.facilities?.parking} Garage`
-                    : `${data?.facilities?.parking} Garages`}
+                  {data?.facilities?.parkings === 1
+                    ? `${data?.facilities?.parkings} Garage`
+                    : `${data?.facilities?.parkings} Garages`}
                 </span>
               </div>
               {/* bathrooms */}
               <div className="flexStart facility">
                 <FaBed size={20} color="#1F3E72" />
-                {data?.facilities?.bedrooms == 1
+                {data?.facilities?.bedrooms === 1
                   ? `${data?.facilities?.bedrooms} Bedroom`
                   : `${data?.facilities?.bedrooms} Bedrooms`}
               </div>

@@ -5,14 +5,25 @@ import OutsideClickHandler from "react-outside-click-handler";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import ProfileMenu from "../profilemenu/ProfileMenu";
+import AddPropertyModal from "../modals/AddPropertyModal";
+import useAuthCheck from "../../hooks/useAuthCheck";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
+  const { validateLogin } = useAuthCheck();
 
   //function to get the menu styles
   const getMenuStyles = (isMenuOpen) => {
     if (document.documentElement.clientWidth <= 800) {
       return { right: !isMenuOpen && "-100%" };
+    }
+  };
+
+  //function to handle add property click
+  const handleAddPropertyClick = () => {
+    if (validateLogin()) {
+      setModalOpen(true);
     }
   };
   return (
@@ -26,6 +37,11 @@ const Header = () => {
             <NavLink to="/properties">Properties</NavLink>
 
             <a href="mailto:issamkharbache2@gmail.com">Contact us</a>
+            {/* add property  */}
+            <div onClick={handleAddPropertyClick} className="">
+              Add Property
+            </div>
+            <AddPropertyModal opened={modalOpen} setOpened={setModalOpen} />
             {/* Login byutton */}
             {!isAuthenticated ? (
               <button onClick={loginWithRedirect} className="button">

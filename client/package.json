@@ -32,7 +32,8 @@
     "react-router-dom": "6.10.0",
     "react-spinners": "^0.14.1",
     "sonner": "^1.5.0",
-    "swiper": "^9.1.1"
+    "swiper": "^9.1.1",
+    "world-countries": "^5.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

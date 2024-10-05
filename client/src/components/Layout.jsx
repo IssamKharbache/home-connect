@@ -12,17 +12,17 @@ import useBookings from "../hooks/useBookings";
 const Layout = () => {
   useFavourites();
   useBookings();
-  const { isAuthenticated, user, getAccessTokenWithPopup } = useAuth0();
+  const { isAuthenticated, user, getAccessTokenSilently } = useAuth0();
 
   const { setUserDetails } = useContext(UserDetailContext);
 
   const { mutate } = useMutation({
     mutationKey: [user?.email],
-    mutationFn: async (token) => createUser(user?.email, token),
+    mutationFn: (token) => createUser(user?.email, token),
   });
   useEffect(() => {
     const getTokenThenRegister = async () => {
-      const res = await getAccessTokenWithPopup({
+      const res = await getAccessTokenSilently({
         authorizationParams: {
           audience: "http://localhost:8000",
           scope: "openid profile email",
