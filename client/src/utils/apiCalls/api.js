@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { toast } from "sonner";
 
 export const api = axios.create({
-  baseURL: "http://localhost:8000/api",
+  baseURL: "https://home-connect-project.vercel.app/api",
 });
 
 // get all properties function
