@@ -1,7 +1,9 @@
+import { useState } from "react";
 import "./hero.css";
 import SearchBar from "./SearchBar";
 import { motion } from "framer-motion";
 const Hero = () => {
+  const [filter, setFilter] = useState("");
   return (
     <section className="hero-wrapper">
       <div className="paddings innerWidth flexCenter hero-container">
@@ -29,8 +31,9 @@ const Hero = () => {
             </span>
           </div>
           {/* SEARCH AREA */}
-          <SearchBar />
+          <SearchBar filter={filter} setFilter={setFilter} />
         </div>
+
         {/* RIGHT SIDE */}
         <div className="flexCenter hero-right">
           <motion.div

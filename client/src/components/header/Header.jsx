@@ -7,6 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import ProfileMenu from "../profilemenu/ProfileMenu";
 import AddPropertyModal from "../modals/AddPropertyModal";
 import useAuthCheck from "../../hooks/useAuthCheck";
+import { IoCloseOutline } from "react-icons/io5";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -52,13 +53,15 @@ const Header = () => {
             )}
           </div>
         </OutsideClickHandler>
-
-        <div
-          className="menu-icon"
-          onClick={() => setIsMenuOpen((prev) => !prev)}
-        >
-          <CgMenuRightAlt size={30} />
-        </div>
+        {isMenuOpen ? (
+          <div className="menu-icon" onClick={() => setIsMenuOpen(false)}>
+            <IoCloseOutline size={30} />
+          </div>
+        ) : (
+          <div className="menu-icon" onClick={() => setIsMenuOpen(true)}>
+            <CgMenuRightAlt size={30} />
+          </div>
+        )}
       </div>
     </section>
   );

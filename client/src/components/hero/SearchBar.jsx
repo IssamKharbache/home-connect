@@ -1,18 +1,16 @@
-import React from "react";
-import { HiLocationMarker } from "react-icons/hi";
-
-const SearchBar = () => {
+const SearchBar = ({ filter, setFilter }) => {
   return (
-    <div className="flexCenter search">
-      <div className="flexCenter search-bar">
+    <div className="flexCenter search" style={{ gap: "1rem" }}>
+      <div className="search-bar">
         <input
-          placeholder="Search by title, city or country..."
+          placeholder="Search by title,city,country..."
           type="text"
-          //   value={filter}
-          //   onChange={(e) => setFilter(e.target.value)}
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
         />
-        <button className="button">Search</button>
       </div>
+
+      <button className="button">Search</button>
     </div>
   );
 };

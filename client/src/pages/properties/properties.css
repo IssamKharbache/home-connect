@@ -2,21 +2,20 @@
     gap: 2rem;
 }
 
-.properties-container .search-bar>input{
-    color: black;
+.properties-container .search-bar{
+    width: clamp(12rem, 100%, 28rem);
     border-radius: 30px;
-    border: 2px solid rgba(120, 120, 120, 0.374);
+    border: 1px solid rgba(120, 120, 120, 0.374);
     flex-wrap: nowrap;
-    padding-left: 15px;
-   
 }
 
-.properties-container .search-bar>input:focus{
-    border: 2px solid var(--blue);
-}
 
-.properties-container .search-bar .button {
+.properties-container .search-bar .button{
     border-radius: 30px;
     font-size: 12px;
     padding: 10px 15px;
+}
+
+.properties-container .search-bar input{
+    width: 70%;
 }
