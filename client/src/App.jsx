@@ -9,6 +9,8 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { Toaster } from "sonner";
 import SingleProperty from "./pages/single-property/SingleProperty";
 import UserDetailContext from "./context/UserDetailContext";
+import BookingsPage from "./pages/bookings/Bookings";
+import FavouritesPage from "./pages/favourites/Favourites";
 function App() {
   const queryClient = new QueryClient();
   const [userDetails, setUserDetails] = useState({
@@ -29,6 +31,8 @@ function App() {
                   <Route index element={<PropertiesPage />} />
                   <Route path=":propertyId" element={<SingleProperty />} />
                 </Route>
+                <Route path="/bookings" element={<BookingsPage />} />
+                <Route path="/favourites" element={<FavouritesPage />} />
               </Route>
             </Routes>
           </Suspense>

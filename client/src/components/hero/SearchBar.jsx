@@ -1,6 +1,9 @@
 const SearchBar = ({ filter, setFilter }) => {
   return (
-    <div className="flexCenter search" style={{ gap: "1rem" }}>
+    <div
+      className="flexStart search"
+      style={{ gap: "1rem", width: "100%", flexWrap: "wrap" }}
+    >
       <div className="search-bar">
         <input
           placeholder="Search by title,city,country..."
