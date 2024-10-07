@@ -31,7 +31,9 @@ const Hero = () => {
             </span>
           </div>
           {/* SEARCH AREA */}
-          <SearchBar filter={filter} setFilter={setFilter} />
+          <div className="flexCenter">
+            <button className="button ">Get Started</button>
+          </div>
         </div>
 
         {/* RIGHT SIDE */}

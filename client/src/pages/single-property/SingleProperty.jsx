@@ -101,6 +101,7 @@ const SingleProperty = () => {
               {/* garages */}
               <div className="flexStart facility">
                 <GiHomeGarage size={20} color="#1F3E72" />
+                {!data?.facilities?.parkings && <span>0</span>}
                 <span>
                   {data?.facilities?.parkings === 1
                     ? `${data?.facilities?.parkings} Garage`

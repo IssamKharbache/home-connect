@@ -4,6 +4,7 @@ import { Button, Group, Select, TextInput } from "@mantine/core";
 import useCountries from "../../hooks/useCountries";
 import Map from "../map/Map";
 import { SlArrowRight } from "react-icons/sl";
+import "./add-location.css";
 
 const AddLocation = ({
   propertyDetails,
@@ -42,21 +43,14 @@ const AddLocation = ({
 
   return (
     <form
+      className="form"
       onSubmit={(e) => {
         e.preventDefault();
         handleSubmit();
       }}
     >
       {/* left side */}
-      <div
-        className="flexCenter"
-        style={{
-          justifyContent: "space-between",
-          gap: "3rem",
-          marginTop: "2rem",
-          flexDirection: "row",
-        }}
-      >
+      <div className="flexCenter location">
         {/* inputs */}
         <div className="flexColStart" style={{ flex: 1, gap: "1rem" }}>
           <Select
@@ -83,7 +77,7 @@ const AddLocation = ({
         </div>
 
         {/* right side */}
-        <div style={{ flex: 1 }}>
+        <div className="map" style={{ flex: 1 }}>
           <Map address={address} city={city} country={country} />
         </div>
       </div>

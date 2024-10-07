@@ -9,6 +9,7 @@ import Facilities from "../steps/Facilities";
 const AddPropertyModal = ({ opened, setOpened }) => {
   const [active, setActive] = useState(0);
   const { user } = useAuth0();
+
   const [propertyDetails, setPropertiesDetails] = useState({
     title: "",
     description: "",
@@ -17,13 +18,14 @@ const AddPropertyModal = ({ opened, setOpened }) => {
     city: "",
     address: "",
     image: null,
-    userEmail: user?.email,
+    userEmail: user ? user.email : "",
     facilities: {
       bathrooms: 0,
       bedrooms: 0,
       parkings: 0,
     },
   });
+
   //function to handle next step
   const nextStep = () => {
     setActive((current) => (current < 4 ? current + 1 : current));

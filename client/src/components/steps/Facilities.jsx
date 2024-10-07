@@ -9,7 +9,6 @@ import { toast } from "sonner";
 import { createProperty } from "../../utils/apiCalls/api";
 
 const Facilities = ({
-  nextStep,
   propertyDetails,
   setPropertiesDetails,
   prevStep,
@@ -31,6 +30,7 @@ const Facilities = ({
   });
   //getting values from form
   const { bedrooms, parkings, bathrooms } = form.values;
+
   //function to handle submit
   const handleSubmit = () => {
     const { hasErrors } = form.validate();
@@ -80,7 +80,7 @@ const Facilities = ({
           bedrooms: 0,
           parkings: 0,
         },
-        userEmail: user?.email,
+        userEmail: user && user.email,
       });
       setActive(0);
       setOpened(false);

@@ -1,0 +1,14 @@
+.location {
+    justify-content: space-between;
+    gap: 3rem;
+    margin-top:2rem ;
+    flex-direction: row;
+      }
+@media (max-width: 800px) {
+    .location{
+        flex-direction: column  ;
+    }
+    .map{
+        display: none;
+    }
+}

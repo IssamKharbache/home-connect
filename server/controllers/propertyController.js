@@ -33,8 +33,8 @@ export const createProperty = asyncHandler(async (req, res) => {
     });
     res.send({ message: "Property created successfully", property });
   } catch (error) {
-    if (error === "P2002") {
-      throw new Error("A property with this address already exists");
+    if (error.code === "P2002") {
+      throw new Error("Property with this address already exists");
     }
     throw new Error(error.message);
   }
